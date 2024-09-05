@@ -15,6 +15,13 @@
 <img src="preview/gif0.gif"/>
 </p>
 
+The purpose of this repository is to demonstrate the following:
+
+- Implementing server-driven UI using Jetpack Compose and Firebase Realtime Database.
+- Defining rendering protocols (such as layout nodes, action handlers, and versioning) and consuming them as composable functions in Jetpack Compose.
+- Establishing component design systems for consuming rendering protocols on the client side, along with versioning systems for these design components.
+- Gaining a deeper understanding of the Firebase Realtime Database system.
+
 ## Tech stack & Open-source libraries
 
 - Minimum SDK level 21.
