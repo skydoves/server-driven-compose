@@ -32,3 +32,7 @@ enum class HandlerType(val value: String) {
 enum class HandlerAction(val value: String) {
   NAVIGATION("navigation")
 }
+
+enum class HandlerNavigation(val value: String) {
+  TO("to")
+}

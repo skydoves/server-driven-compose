@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import io.getstream.server.driven.core.model.Handler
 import io.getstream.server.driven.core.model.HandlerAction
+import io.getstream.server.driven.core.model.HandlerNavigation
 import io.getstream.server.driven.core.model.HandlerType
 
 @Composable
@@ -29,17 +30,23 @@ fun Modifier.consumeHandler(
 ): Modifier {
   if (handler == null) return this
 
-  val action = if (handler.actions[HandlerAction.NAVIGATION.value] == "to") {
-    { navigator }
-  } else {
-    {}
-  }
+  handler.actions.forEach { element ->
+    val action =
+      if (element.key == HandlerAction.NAVIGATION.value &&
+        element.value == HandlerNavigation.TO.value
+      ) {
+        { navigator }
+      } else {
+        {}
+      }
 
-  return then(
-    if (handler.type == HandlerType.CLICK.value) {
+    val newModifier = if (handler.type == HandlerType.CLICK.value) {
       Modifier.clickable { action.invoke() }
     } else {
       Modifier
     }
-  )
+
+    then(newModifier)
+  }
+  return this
 }
