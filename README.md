@@ -16,6 +16,7 @@
 </p>
 
 ## Tech stack & Open-source libraries
+
 - Minimum SDK level 21.
 - [Kotlin](https://kotlinlang.org/) based, utilizing [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous operations.
 - Jetpack Libraries:
@@ -34,9 +35,11 @@
 
 ## Runing This Project on Your Side
 
-1. First things first, download the following JSON file on your local PC: [Gist: JSON demo for Timeline UI](https://gist.github.com/skydoves/16267ebe987c6246d917814440f03aac).
+You can run this project on your side following the guidelines below:
 
-</details>
+<details>
+
+1. First things first, download the following JSON file on your local PC: [Gist: JSON demo for Timeline UI](https://gist.github.com/skydoves/16267ebe987c6246d917814440f03aac).
 
 2. Following the [Firebase setup guidelines](https://firebase.google.com/docs/android/setup), download the **google-services.json** and place it into the `app` directory on this project.
 
@@ -54,7 +57,22 @@ REALTIME_DATABASE_URL=https://server-driven-compose-default-rtdb.asia-southeast1
 
 5. Build the project.
 
+</details>
+
+## Component Versioning
+
+**Server Driven Compose** demonstrates a versioning system for each component and how to synchronize them with the application in real-time.
+
+<img src="preview/gif1.gif"/>
+
 ## Architecture
+
+**Server Driven Compose** fetches data from Firebase Realtime Database and makes it an observable flow in the data layer. The presentation layer then takes this data and assembles it into components, which are formatted to be consumed by UIs as composable functions.
+
+![architecture](figure/arch.png)
+
+### Design Patterns
+
 **Server Driven Compose** adheres to the MVVM architecture and implements the Repository pattern, aligning with [Google's official architecture guidance](https://developer.android.com/topic/architecture).
 
 The architecture of **Server Driven Compose** is structured into two distinct layers: the UI layer and the data layer. Each layer fulfills specific roles and responsibilities, outlined as follows:
