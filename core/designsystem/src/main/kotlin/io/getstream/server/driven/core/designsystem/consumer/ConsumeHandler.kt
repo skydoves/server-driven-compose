@@ -23,20 +23,23 @@ import io.getstream.server.driven.core.model.HandlerAction
 import io.getstream.server.driven.core.model.HandlerType
 
 @Composable
-fun Handler?.consumeHandler(
+fun Modifier.consumeHandler(
+  handler: Handler?,
   navigator: () -> Unit
 ): Modifier {
-  if (this == null) return Modifier
+  if (handler == null) return this
 
-  val action = if (this.actions[HandlerAction.NAVIGATION.value] == "to") {
+  val action = if (handler.actions[HandlerAction.NAVIGATION.value] == "to") {
     { navigator }
   } else {
     {}
   }
 
-  return if (this.type == HandlerType.CLICK.value) {
-    Modifier.clickable { action.invoke() }
-  } else {
-    Modifier
-  }
+  return then(
+    if (handler.type == HandlerType.CLICK.value) {
+      Modifier.clickable { action.invoke() }
+    } else {
+      Modifier
+    }
+  )
 }

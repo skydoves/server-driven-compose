@@ -40,18 +40,20 @@ fun ConsumeImageUi(
   navigator: (UiComponent) -> Unit = {},
   imageOptions: ImageOptions? = null
 ) {
-  val actionModifier = imageUi.handler.consumeHandler(
-    navigator = { navigator.invoke(imageUi) }
-  )
-
   val newModifier = if (version == 1) {
     modifier
-      .then(actionModifier)
+      .consumeHandler(
+        handler = imageUi.handler,
+        navigator = { navigator.invoke(imageUi) }
+      )
       .size(imageUi.size)
       .clip(RoundedCornerShape(8.dp))
   } else {
     modifier
-      .then(actionModifier)
+      .consumeHandler(
+        handler = imageUi.handler,
+        navigator = { navigator.invoke(imageUi) }
+      )
       .size(imageUi.size)
       .clip(RoundedCornerShape(16.dp))
       .border(
