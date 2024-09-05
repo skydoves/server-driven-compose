@@ -25,6 +25,7 @@ data class ListUi(
   val layout: String,
   val itemSize: DpSizeUi,
   val items: List<ImageUi>,
+  val handler: Handler? = null,
   val extra: Map<String, JsonElement> = mapOf()
 ) : UiComponent
 

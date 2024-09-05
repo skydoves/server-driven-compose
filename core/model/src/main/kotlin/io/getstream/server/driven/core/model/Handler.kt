@@ -20,22 +20,15 @@ import kotlinx.serialization.Serializable
 
 @Immutable
 @Serializable
-data class ImageUi(
-  val title: String = "",
-  val url: String,
-  val size: DpSizeUi = DpSizeUi(0, 0),
-  val scaleType: String,
-  val handler: Handler? = null
-) : UiComponent {
+data class Handler(
+  val type: String,
+  val actions: Map<String, String>
+)
 
-  fun toTextUi(
-    size: Int = 26,
-    fontWeight: String = "normal"
-  ): TextUi {
-    return TextUi(
-      text = title,
-      size = size,
-      fontWeight = fontWeight
-    )
-  }
+enum class HandlerType(val value: String) {
+  CLICK("click")
+}
+
+enum class HandlerAction(val value: String) {
+  NAVIGATION("navigation")
 }

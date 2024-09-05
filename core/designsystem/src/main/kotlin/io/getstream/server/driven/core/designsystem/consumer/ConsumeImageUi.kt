@@ -30,20 +30,28 @@ import io.getstream.server.driven.core.designsystem.extension.size
 import io.getstream.server.driven.core.designsystem.preview.MockUtils
 import io.getstream.server.driven.core.designsystem.theme.ServerDrivenTheme
 import io.getstream.server.driven.core.model.ImageUi
+import io.getstream.server.driven.core.model.UiComponent
 
 @Composable
 fun ConsumeImageUi(
   imageUi: ImageUi,
   modifier: Modifier = Modifier,
   version: Int,
+  navigator: (UiComponent) -> Unit = {},
   imageOptions: ImageOptions? = null
 ) {
+  val actionModifier = imageUi.handler.consumeHandler(
+    navigator = { navigator.invoke(imageUi) }
+  )
+
   val newModifier = if (version == 1) {
     modifier
+      .then(actionModifier)
       .size(imageUi.size)
       .clip(RoundedCornerShape(8.dp))
   } else {
     modifier
+      .then(actionModifier)
       .size(imageUi.size)
       .clip(RoundedCornerShape(16.dp))
       .border(

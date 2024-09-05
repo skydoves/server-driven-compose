@@ -16,7 +16,6 @@
 package io.getstream.server.driven.feature.timeline
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,7 +35,6 @@ import io.getstream.server.driven.core.designsystem.consumer.Consume
 import io.getstream.server.driven.core.designsystem.preview.DefaultPreview
 import io.getstream.server.driven.core.designsystem.preview.MockUtils
 import io.getstream.server.driven.core.designsystem.theme.ServerDrivenTheme
-import io.getstream.server.driven.core.model.ImageUi
 import io.getstream.server.driven.core.model.ScreenUi
 import io.getstream.server.driven.core.model.UiComponent
 
@@ -73,16 +71,9 @@ private fun ServerDrivenTimelineContent(
     verticalArrangement = Arrangement.spacedBy(12.dp)
   ) {
     timelineUi.components.forEach { uiComponent ->
-      val modifier = if (uiComponent is ImageUi) {
-        Modifier.clickable { navigateToDetails.invoke(uiComponent) }
-      } else {
-        Modifier
-      }
-
       uiComponent.Consume(
-        modifier = modifier,
         version = timelineUi.version,
-        onListItemClicked = { clickedComponent ->
+        navigator = { clickedComponent ->
           navigateToDetails.invoke(clickedComponent)
         }
       )
