@@ -15,6 +15,7 @@
  */
 package io.getstream.server.driven.core.designsystem.consumer
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -34,10 +35,26 @@ import io.getstream.server.driven.core.model.ImageUi
 fun ConsumeImageUi(
   imageUi: ImageUi,
   modifier: Modifier = Modifier,
+  version: Int,
   imageOptions: ImageOptions? = null
 ) {
+  val newModifier = if (version == 1) {
+    modifier
+      .size(imageUi.size)
+      .clip(RoundedCornerShape(8.dp))
+  } else {
+    modifier
+      .size(imageUi.size)
+      .clip(RoundedCornerShape(16.dp))
+      .border(
+        width = 4.dp,
+        color = ServerDrivenTheme.colors.primary,
+        shape = RoundedCornerShape(16.dp)
+      )
+  }
+
   GlideImage(
-    modifier = modifier
+    modifier = newModifier
       .size(imageUi.size)
       .clip(RoundedCornerShape(8.dp)),
     imageModel = { imageUi.url },
@@ -51,8 +68,16 @@ fun ConsumeImageUi(
 
 @Preview
 @Composable
-private fun ConsumeImageUiPreview() {
+private fun ConsumeImageUiV1Preview() {
   ServerDrivenTheme {
-    ConsumeImageUi(imageUi = MockUtils.mockImageUi)
+    ConsumeImageUi(imageUi = MockUtils.mockImageUi, version = 1)
+  }
+}
+
+@Preview
+@Composable
+private fun ConsumeImageUiV2Preview() {
+  ServerDrivenTheme {
+    ConsumeImageUi(imageUi = MockUtils.mockImageUi, version = 2)
   }
 }

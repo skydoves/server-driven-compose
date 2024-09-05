@@ -37,6 +37,7 @@ import io.getstream.server.driven.core.designsystem.preview.DefaultPreview
 import io.getstream.server.driven.core.designsystem.preview.MockUtils
 import io.getstream.server.driven.core.designsystem.theme.ServerDrivenTheme
 import io.getstream.server.driven.core.model.ImageUi
+import io.getstream.server.driven.core.model.ScreenUi
 import io.getstream.server.driven.core.model.UiComponent
 
 @Composable
@@ -60,7 +61,7 @@ fun ServerDrivenTimeline(
 
 @Composable
 private fun ServerDrivenTimelineContent(
-  timelineUi: List<UiComponent>,
+  timelineUi: ScreenUi,
   navigateToDetails: (UiComponent) -> Unit
 ) {
   Column(
@@ -71,7 +72,7 @@ private fun ServerDrivenTimelineContent(
       .verticalScroll(state = rememberScrollState()),
     verticalArrangement = Arrangement.spacedBy(12.dp)
   ) {
-    timelineUi.forEach { uiComponent ->
+    timelineUi.components.forEach { uiComponent ->
       val modifier = if (uiComponent is ImageUi) {
         Modifier.clickable { navigateToDetails.invoke(uiComponent) }
       } else {
@@ -80,6 +81,7 @@ private fun ServerDrivenTimelineContent(
 
       uiComponent.Consume(
         modifier = modifier,
+        version = timelineUi.version,
         onListItemClicked = { clickedComponent ->
           navigateToDetails.invoke(clickedComponent)
         }
@@ -93,10 +95,13 @@ private fun ServerDrivenTimelineContent(
 private fun ServerDrivenTimelineContentPreview() {
   ServerDrivenTheme {
     ServerDrivenTimelineContent(
-      listOf(
-        MockUtils.mockImageUi,
-        MockUtils.mockTextUi1,
-        MockUtils.mockTextUi2
+      ScreenUi(
+        version = 1,
+        components = listOf(
+          MockUtils.mockImageUi,
+          MockUtils.mockTextUi1,
+          MockUtils.mockTextUi2
+        )
       ),
       navigateToDetails = {}
     )

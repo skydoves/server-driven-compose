@@ -54,6 +54,7 @@ import io.getstream.server.driven.core.model.typedValue
 fun ConsumeList(
   listUi: ListUi,
   modifier: Modifier = Modifier,
+  version: Int,
   onListItemClicked: (UiComponent) -> Unit
 ) {
   val layoutType = listUi.layout.toLayoutType()
@@ -78,7 +79,8 @@ fun ConsumeList(
               )
           ) {
             ConsumeImageUi(
-              imageUi = imageUi.copy(size = listUi.itemSize)
+              imageUi = imageUi.copy(size = listUi.itemSize),
+              version = version
             )
 
             val like = listUi.extra["like"].typedValue(false)
@@ -124,7 +126,8 @@ private fun ConsumeListPreview() {
   ServerDrivenTheme {
     ConsumeList(
       listUi = MockUtils.mockListUi,
-      onListItemClicked = {}
+      onListItemClicked = {},
+      version = 1
     )
   }
 }

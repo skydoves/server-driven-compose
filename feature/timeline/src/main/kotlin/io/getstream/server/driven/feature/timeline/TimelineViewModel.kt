@@ -19,11 +19,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.getstream.server.driven.core.data.repository.TimelineRepository
-import io.getstream.server.driven.core.model.UiComponent
+import io.getstream.server.driven.core.model.ScreenUi
 import io.getstream.server.driven.core.model.buildUiComponentList
 import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
@@ -34,9 +35,15 @@ class TimelineViewModel @Inject constructor(
   repository: TimelineRepository
 ) : ViewModel() {
 
-  val timelineUi: StateFlow<List<UiComponent>?> = repository.fetchTimelineUi()
+  val timelineUi: StateFlow<ScreenUi?> = repository.fetchTimelineUi()
     .flatMapLatest { response -> flowOf(response.getOrNull()) }
-    .map { it?.buildUiComponentList() }
+    .filterNotNull()
+    .map {
+      ScreenUi(
+        version = it.version,
+        components = it.buildUiComponentList()
+      )
+    }
     .stateIn(
       scope = viewModelScope,
       started = SharingStarted.WhileSubscribed(5000),
