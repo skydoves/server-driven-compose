@@ -59,17 +59,17 @@ REALTIME_DATABASE_URL=https://server-driven-compose-default-rtdb.asia-southeast1
 
 </details>
 
-## Component Versioning
-
-**Server Driven Compose** demonstrates a versioning system for each component and how to synchronize them with the application in real-time.
-
-<img src="preview/gif1.gif"/>
-
 ## Architecture
 
 **Server Driven Compose** fetches data from Firebase Realtime Database and makes it an observable flow in the data layer. The presentation layer then takes this data and assembles it into components, which are formatted to be consumed by UIs as composable functions.
 
 ![architecture](figure/arch.png)
+
+### Component Versioning
+
+**Server Driven Compose** demonstrates a versioning system for each component and how to synchronize them with the application in real-time.
+
+<img src="preview/gif1.gif"/>
 
 ### Design Patterns
 
