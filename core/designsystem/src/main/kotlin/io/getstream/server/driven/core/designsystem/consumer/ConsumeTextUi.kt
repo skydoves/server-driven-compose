@@ -30,11 +30,11 @@ import io.getstream.server.driven.core.model.TextUi
 
 @Composable
 fun ConsumeTextUi(
-  version: Int,
+  version: UiVersion,
   textUi: TextUi,
   modifier: Modifier = Modifier
 ) {
-  if (version == UiVersion.VERSION_1_0.value) {
+  if (version == UiVersion.VERSION_1_0) {
     Text(
       modifier = modifier,
       text = textUi.text,
@@ -63,11 +63,11 @@ private fun ConsumeTextUiV1Preview() {
         .fillMaxWidth()
     ) {
       ConsumeTextUi(
-        version = UiVersion.VERSION_1_0.value,
+        version = UiVersion.VERSION_1_0,
         textUi = MockUtils.mockTextUi1
       )
       ConsumeTextUi(
-        version = UiVersion.VERSION_1_0.value,
+        version = UiVersion.VERSION_1_0,
         textUi = MockUtils.mockTextUi2
       )
     }
@@ -84,11 +84,11 @@ private fun ConsumeTextUiV2Preview() {
         .fillMaxWidth()
     ) {
       ConsumeTextUi(
-        version = UiVersion.VERSION_2_0.value,
+        version = UiVersion.VERSION_2_0,
         textUi = MockUtils.mockTextUi1
       )
       ConsumeTextUi(
-        version = UiVersion.VERSION_2_0.value,
+        version = UiVersion.VERSION_2_0,
         textUi = MockUtils.mockTextUi2
       )
     }

@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import io.getstream.server.driven.core.designsystem.consumer.Consume
 import io.getstream.server.driven.core.designsystem.preview.MockUtils.mockTextUi2
 import io.getstream.server.driven.core.designsystem.theme.ServerDrivenTheme
+import io.getstream.server.driven.core.designsystem.version.uiVersion
 import io.getstream.server.driven.core.model.ImageUi
 import io.getstream.server.driven.core.model.ScreenUi
 
@@ -52,14 +53,14 @@ fun PostDetails(
           .fillMaxWidth()
           .height(300.dp)
       ) {
-        component.Consume(version = detailsUi.version)
+        component.Consume(version = detailsUi.uiVersion)
       }
 
       if (component is ImageUi && component.title.isNotEmpty()) {
-        component.toTextUi().Consume(version = detailsUi.version)
+        component.toTextUi().Consume(version = detailsUi.uiVersion)
       }
     }
 
-    mockTextUi2.Consume(version = detailsUi.version)
+    mockTextUi2.Consume(version = detailsUi.uiVersion)
   }
 }

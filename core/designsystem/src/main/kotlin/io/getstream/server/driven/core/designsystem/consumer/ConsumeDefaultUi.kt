@@ -32,7 +32,7 @@ import io.getstream.server.driven.core.model.UiComponent
 @Composable
 fun ConsumeDefaultUi(
   uiComponent: UiComponent,
-  version: Int
+  version: UiVersion
 ) {
   Box(modifier = Modifier.fillMaxWidth()) {
     Text(
@@ -48,7 +48,7 @@ fun ConsumeDefaultUi(
 private fun ConsumeDefaultUiPreview() {
   ServerDrivenTheme {
     Box(modifier = Modifier.background(ServerDrivenTheme.colors.background)) {
-      ConsumeDefaultUi(MockUtils.mockTextUi1, version = UiVersion.VERSION_1_0.value)
+      ConsumeDefaultUi(MockUtils.mockTextUi1, version = UiVersion.VERSION_1_0)
     }
   }
 }

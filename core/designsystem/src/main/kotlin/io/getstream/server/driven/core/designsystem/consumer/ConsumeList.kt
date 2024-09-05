@@ -55,7 +55,7 @@ import io.getstream.server.driven.core.model.typedValue
 fun ConsumeList(
   listUi: ListUi,
   modifier: Modifier = Modifier,
-  version: Int,
+  version: UiVersion,
   onListItemClicked: (UiComponent) -> Unit
 ) {
   val layoutType = listUi.layout.toLayoutType()
@@ -128,7 +128,7 @@ private fun ConsumeListPreview() {
     ConsumeList(
       listUi = MockUtils.mockListUi,
       onListItemClicked = {},
-      version = UiVersion.VERSION_1_0.value
+      version = UiVersion.VERSION_1_0
     )
   }
 }

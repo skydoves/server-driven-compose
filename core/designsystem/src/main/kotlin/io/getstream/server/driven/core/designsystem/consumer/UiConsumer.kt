@@ -17,6 +17,7 @@ package io.getstream.server.driven.core.designsystem.consumer
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import io.getstream.server.driven.core.designsystem.version.UiVersion
 import io.getstream.server.driven.core.model.ImageUi
 import io.getstream.server.driven.core.model.ListUi
 import io.getstream.server.driven.core.model.TextUi
@@ -25,11 +26,16 @@ import io.getstream.server.driven.core.model.UiComponent
 @Composable
 fun UiComponent.Consume(
   modifier: Modifier = Modifier,
-  version: Int = 1,
+  version: UiVersion = UiVersion.VERSION_1_0,
   navigator: (UiComponent) -> Unit = {}
 ) {
   when (this) {
-    is TextUi -> ConsumeTextUi(textUi = this, modifier = modifier, version = version)
+    is TextUi -> ConsumeTextUi(
+      textUi = this,
+      modifier = modifier,
+      version = version
+    )
+
     is ImageUi -> ConsumeImageUi(
       imageUi = this,
       modifier = modifier,
@@ -44,6 +50,9 @@ fun UiComponent.Consume(
       onListItemClicked = navigator
     )
 
-    else -> ConsumeDefaultUi(uiComponent = this, version = version)
+    else -> ConsumeDefaultUi(
+      uiComponent = this,
+      version = version
+    )
   }
 }

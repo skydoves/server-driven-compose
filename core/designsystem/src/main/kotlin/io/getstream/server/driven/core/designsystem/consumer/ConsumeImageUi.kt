@@ -40,11 +40,11 @@ import io.getstream.server.driven.core.model.UiComponent
 fun ConsumeImageUi(
   imageUi: ImageUi,
   modifier: Modifier = Modifier,
-  version: Int,
+  version: UiVersion,
   navigator: (UiComponent) -> Unit = {},
   imageOptions: ImageOptions? = null
 ) {
-  val newModifier = if (version == UiVersion.VERSION_1_0.value) {
+  val newModifier = if (version == UiVersion.VERSION_1_0) {
     modifier
       .consumeHandler(
         handler = imageUi.handler,
@@ -92,7 +92,7 @@ fun ConsumeImageUi(
 @Composable
 private fun ConsumeImageUiV1Preview() {
   ServerDrivenTheme {
-    ConsumeImageUi(imageUi = MockUtils.mockImageUi, version = UiVersion.VERSION_1_0.value)
+    ConsumeImageUi(imageUi = MockUtils.mockImageUi, version = UiVersion.VERSION_1_0)
   }
 }
 
@@ -100,6 +100,6 @@ private fun ConsumeImageUiV1Preview() {
 @Composable
 private fun ConsumeImageUiV2Preview() {
   ServerDrivenTheme {
-    ConsumeImageUi(imageUi = MockUtils.mockImageUi, version = UiVersion.VERSION_2_0.value)
+    ConsumeImageUi(imageUi = MockUtils.mockImageUi, version = UiVersion.VERSION_2_0)
   }
 }

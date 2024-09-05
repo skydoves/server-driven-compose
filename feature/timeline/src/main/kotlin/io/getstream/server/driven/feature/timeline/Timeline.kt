@@ -36,6 +36,7 @@ import io.getstream.server.driven.core.designsystem.preview.DefaultPreview
 import io.getstream.server.driven.core.designsystem.preview.MockUtils
 import io.getstream.server.driven.core.designsystem.theme.ServerDrivenTheme
 import io.getstream.server.driven.core.designsystem.version.UiVersion
+import io.getstream.server.driven.core.designsystem.version.uiVersion
 import io.getstream.server.driven.core.model.ScreenUi
 import io.getstream.server.driven.core.model.UiComponent
 
@@ -73,7 +74,7 @@ private fun ServerDrivenTimelineContent(
   ) {
     timelineUi.components.forEach { uiComponent ->
       uiComponent.Consume(
-        version = timelineUi.version,
+        version = timelineUi.uiVersion,
         navigator = { clickedComponent ->
           navigateToDetails.invoke(clickedComponent, timelineUi.version)
         }
