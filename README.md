@@ -74,7 +74,9 @@ REALTIME_DATABASE_URL=https://server-driven-compose-default-rtdb.asia-southeast1
 
 ### Component Design System
 
-**Server Driven Compose** retrieves all rendering information from the backend (Firebase Realtime Database), allowing the client to focus solely on consuming the layout details. This approach lets you concentrate on "how to do (rendering)" rather than "what to do," a decision typically made by the product manager.
+**Server Driven Compose** retrieves all rendering information from the backend (Firebase Realtime Database), allowing the client to focus solely on consuming the layout details. This approach lets you concentrate on "how to do (rendering)" rather than "what to do," a decision typically made by the product manager. <br>
+
+The code below shows how the main (timeline) screen is implemented in Jetpack Compose, showcasing its simplicity. It observes the UI component information from the backend server and consumes it according to the pre-built component design system. This makes the screen implementation very passive, allowing you to focus on how each component is rendered rather than deciding what to render.
 
 ```kotlin
 Column(
