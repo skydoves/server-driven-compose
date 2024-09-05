@@ -15,8 +15,8 @@
  */
 package io.getstream.server.driven.core.navigation
 
-import io.getstream.server.driven.core.model.UiComponent
-import io.getstream.server.driven.core.navigation.navtypes.UiComponentNavType
+import io.getstream.server.driven.core.model.ScreenUi
+import io.getstream.server.driven.core.navigation.navtypes.ScreenUiNavType
 import kotlin.reflect.typeOf
 import kotlinx.serialization.Serializable
 
@@ -26,10 +26,10 @@ sealed interface ServerDrivenScreen {
   data object Timeline : ServerDrivenScreen
 
   @Serializable
-  data class Details(val ui: UiComponent) : ServerDrivenScreen {
+  data class Details(val ui: ScreenUi) : ServerDrivenScreen {
 
     companion object {
-      val typeMap = mapOf(typeOf<UiComponent>() to UiComponentNavType)
+      val typeMap = mapOf(typeOf<ScreenUi>() to ScreenUiNavType)
     }
   }
 }

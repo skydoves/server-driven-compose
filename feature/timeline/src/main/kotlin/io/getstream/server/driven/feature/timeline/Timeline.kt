@@ -41,7 +41,7 @@ import io.getstream.server.driven.core.model.UiComponent
 @Composable
 fun ServerDrivenTimeline(
   timelineViewModel: TimelineViewModel = hiltViewModel(),
-  navigateToDetails: (UiComponent) -> Unit
+  navigateToDetails: (UiComponent, Int) -> Unit
 ) {
   val timelineUi by timelineViewModel.timelineUi.collectAsStateWithLifecycle()
 
@@ -60,7 +60,7 @@ fun ServerDrivenTimeline(
 @Composable
 private fun ServerDrivenTimelineContent(
   timelineUi: ScreenUi,
-  navigateToDetails: (UiComponent) -> Unit
+  navigateToDetails: (UiComponent, Int) -> Unit
 ) {
   Column(
     modifier = Modifier
@@ -74,7 +74,7 @@ private fun ServerDrivenTimelineContent(
       uiComponent.Consume(
         version = timelineUi.version,
         navigator = { clickedComponent ->
-          navigateToDetails.invoke(clickedComponent)
+          navigateToDetails.invoke(clickedComponent, timelineUi.version)
         }
       )
     }
@@ -94,7 +94,7 @@ private fun ServerDrivenTimelineContentPreview() {
           MockUtils.mockTextUi2
         )
       ),
-      navigateToDetails = {}
+      navigateToDetails = { _, _ -> }
     )
   }
 }

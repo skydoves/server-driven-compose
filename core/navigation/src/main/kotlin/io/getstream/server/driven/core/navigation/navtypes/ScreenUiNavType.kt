@@ -18,33 +18,33 @@ package io.getstream.server.driven.core.navigation.navtypes
 import android.net.Uri
 import android.os.Bundle
 import androidx.navigation.NavType
-import io.getstream.server.driven.core.model.UiComponent
+import io.getstream.server.driven.core.model.ScreenUi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-object UiComponentNavType : NavType<UiComponent?>(isNullableAllowed = true) {
+object ScreenUiNavType : NavType<ScreenUi?>(isNullableAllowed = true) {
 
   private val json = Json
 
-  override fun get(bundle: Bundle, key: String): UiComponent? {
+  override fun get(bundle: Bundle, key: String): ScreenUi? {
     val stringValue = bundle.getString(key) ?: return null
-    val component = json.decodeFromString<UiComponent>(stringValue)
+    val component = json.decodeFromString<ScreenUi>(stringValue)
     return component
   }
 
-  override fun put(bundle: Bundle, key: String, value: UiComponent?) {
+  override fun put(bundle: Bundle, key: String, value: ScreenUi?) {
     val stringValue = json.encodeToString(value)
     bundle.putSerializable(key, stringValue)
   }
 
-  override fun serializeAsValue(value: UiComponent?): String {
+  override fun serializeAsValue(value: ScreenUi?): String {
     // Serialized values must always be Uri encoded
     return Uri.encode(Json.encodeToString(value))
   }
 
-  override fun parseValue(value: String): UiComponent? {
+  override fun parseValue(value: String): ScreenUi? {
     // Navigation takes care of decoding the string
     // before passing it to parseValue()
-    return Json.decodeFromString<UiComponent?>(value)
+    return Json.decodeFromString<ScreenUi?>(value)
   }
 }

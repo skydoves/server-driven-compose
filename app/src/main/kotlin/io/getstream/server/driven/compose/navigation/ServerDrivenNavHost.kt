@@ -27,6 +27,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import io.getstream.server.driven.core.designsystem.theme.ServerDrivenTheme
+import io.getstream.server.driven.core.model.ScreenUi
 import io.getstream.server.driven.core.navigation.AppComposeNavigator
 import io.getstream.server.driven.core.navigation.ServerDrivenScreen
 import io.getstream.server.driven.feature.details.PostDetails
@@ -53,8 +54,15 @@ fun ServerDrivenNavHost(
   ) {
     composable<ServerDrivenScreen.Timeline> {
       ServerDrivenTimeline(
-        navigateToDetails = { component ->
-          composeNavigator.navigate(ServerDrivenScreen.Details(component))
+        navigateToDetails = { component, version ->
+          composeNavigator.navigate(
+            ServerDrivenScreen.Details(
+              ScreenUi(
+                version = version,
+                components = listOf(component)
+              )
+            )
+          )
         }
       )
     }
