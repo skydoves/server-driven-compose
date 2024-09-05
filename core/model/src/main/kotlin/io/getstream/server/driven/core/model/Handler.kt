@@ -33,6 +33,6 @@ enum class HandlerAction(val value: String) {
   NAVIGATION("navigation")
 }
 
-enum class HandlerNavigation(val value: String) {
+enum class NavigationHandler(val value: String) {
   TO("to")
 }

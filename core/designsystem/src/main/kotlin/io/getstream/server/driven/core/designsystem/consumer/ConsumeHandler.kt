@@ -20,8 +20,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import io.getstream.server.driven.core.model.Handler
 import io.getstream.server.driven.core.model.HandlerAction
-import io.getstream.server.driven.core.model.HandlerNavigation
 import io.getstream.server.driven.core.model.HandlerType
+import io.getstream.server.driven.core.model.NavigationHandler
 
 @Composable
 fun Modifier.consumeHandler(
@@ -33,7 +33,7 @@ fun Modifier.consumeHandler(
   handler.actions.forEach { element ->
     val action =
       if (element.key == HandlerAction.NAVIGATION.value &&
-        element.value == HandlerNavigation.TO.value
+        element.value == NavigationHandler.TO.value
       ) {
         { navigator }
       } else {
