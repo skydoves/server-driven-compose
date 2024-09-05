@@ -24,7 +24,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.skydoves.landscapist.ImageOptions
+import com.skydoves.landscapist.components.rememberImageComponent
 import com.skydoves.landscapist.glide.GlideImage
+import com.skydoves.landscapist.placeholder.shimmer.Shimmer
+import com.skydoves.landscapist.placeholder.shimmer.ShimmerPlugin
 import io.getstream.server.driven.core.designsystem.R
 import io.getstream.server.driven.core.designsystem.extension.size
 import io.getstream.server.driven.core.designsystem.preview.MockUtils
@@ -72,6 +75,14 @@ fun ConsumeImageUi(
       contentScale = imageUi.scaleType.toContentScale(),
       contentDescription = imageUi.title
     ),
+    component = rememberImageComponent {
+      +ShimmerPlugin(
+        Shimmer.Resonate(
+          baseColor = ServerDrivenTheme.colors.shimmerBase,
+          highlightColor = ServerDrivenTheme.colors.shimmerHighlight
+        )
+      )
+    },
     previewPlaceholder = painterResource(R.drawable.preview)
   )
 }
