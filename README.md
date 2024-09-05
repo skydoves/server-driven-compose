@@ -72,6 +72,30 @@ REALTIME_DATABASE_URL=https://server-driven-compose-default-rtdb.asia-southeast1
 
 ![architecture](figure/arch.png)
 
+### Component Design System
+
+**Server Driven Compose** retrieves all rendering information from the backend (Firebase Realtime Database), allowing the client to focus solely on consuming the layout details. This approach lets you concentrate on "how to do (rendering)" rather than "what to do," a decision typically made by the product manager.
+
+```kotlin
+Column(
+  modifier = Modifier
+    .background(ServerDrivenTheme.colors.background)
+    .fillMaxSize()
+    .padding(12.dp)
+    .verticalScroll(state = rememberScrollState()),
+  verticalArrangement = Arrangement.spacedBy(12.dp)
+) {
+  timelineUi.components.forEach { uiComponent ->
+    uiComponent.Consume(
+      version = timelineUi.version,
+      navigator = { clickedComponent ->
+        navigateToDetails.invoke(clickedComponent, timelineUi.version)
+      }
+    )
+  }
+}
+```
+
 ### Component Versioning
 
 **Server Driven Compose** demonstrates a versioning system for each component and how to synchronize them with the application in real-time.
