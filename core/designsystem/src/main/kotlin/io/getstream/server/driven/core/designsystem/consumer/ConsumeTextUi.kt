@@ -29,29 +29,67 @@ import io.getstream.server.driven.core.model.TextUi
 
 @Composable
 fun ConsumeTextUi(
+  version: Int,
   textUi: TextUi,
   modifier: Modifier = Modifier
 ) {
-  Text(
-    modifier = modifier,
-    text = textUi.text,
-    color = ServerDrivenTheme.colors.textHighEmphasis,
-    fontSize = textUi.size.sp,
-    fontWeight = textUi.fontWeight.toFontWeight()
-  )
+  if (version == 1) {
+    Text(
+      modifier = modifier,
+      text = textUi.text,
+      color = ServerDrivenTheme.colors.textHighEmphasis,
+      fontSize = textUi.size.sp,
+      fontWeight = textUi.fontWeight.toFontWeight()
+    )
+  } else {
+    Text(
+      modifier = modifier,
+      text = textUi.text,
+      color = ServerDrivenTheme.colors.primary,
+      fontSize = textUi.size.sp,
+      fontWeight = textUi.fontWeight.toFontWeight()
+    )
+  }
 }
 
 @Preview
 @Composable
-private fun ConsumeTextUiPreview() {
+private fun ConsumeTextUiV1Preview() {
   ServerDrivenTheme {
     Column(
       modifier = Modifier
         .background(ServerDrivenTheme.colors.background)
         .fillMaxWidth()
     ) {
-      ConsumeTextUi(textUi = MockUtils.mockTextUi1)
-      ConsumeTextUi(textUi = MockUtils.mockTextUi2)
+      ConsumeTextUi(
+        version = 1,
+        textUi = MockUtils.mockTextUi1
+      )
+      ConsumeTextUi(
+        version = 1,
+        textUi = MockUtils.mockTextUi2
+      )
+    }
+  }
+}
+
+@Preview
+@Composable
+private fun ConsumeTextUiV2Preview() {
+  ServerDrivenTheme {
+    Column(
+      modifier = Modifier
+        .background(ServerDrivenTheme.colors.background)
+        .fillMaxWidth()
+    ) {
+      ConsumeTextUi(
+        version = 2,
+        textUi = MockUtils.mockTextUi1
+      )
+      ConsumeTextUi(
+        version = 2,
+        textUi = MockUtils.mockTextUi2
+      )
     }
   }
 }

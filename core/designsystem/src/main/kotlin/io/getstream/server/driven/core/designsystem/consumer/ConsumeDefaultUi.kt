@@ -29,7 +29,10 @@ import io.getstream.server.driven.core.designsystem.theme.ServerDrivenTheme
 import io.getstream.server.driven.core.model.UiComponent
 
 @Composable
-fun ConsumeDefaultUi(uiComponent: UiComponent) {
+fun ConsumeDefaultUi(
+  uiComponent: UiComponent,
+  version: Int
+) {
   Box(modifier = Modifier.fillMaxWidth()) {
     Text(
       modifier = Modifier.padding(6.dp),
@@ -44,7 +47,7 @@ fun ConsumeDefaultUi(uiComponent: UiComponent) {
 private fun ConsumeDefaultUiPreview() {
   ServerDrivenTheme {
     Box(modifier = Modifier.background(ServerDrivenTheme.colors.background)) {
-      ConsumeDefaultUi(MockUtils.mockTextUi1)
+      ConsumeDefaultUi(MockUtils.mockTextUi1, version = 1)
     }
   }
 }

@@ -25,17 +25,19 @@ import io.getstream.server.driven.core.model.UiComponent
 @Composable
 fun UiComponent.Consume(
   modifier: Modifier = Modifier,
+  version: Int = 0,
   onListItemClicked: (UiComponent) -> Unit = {}
 ) {
   when (this) {
-    is TextUi -> ConsumeTextUi(textUi = this, modifier = modifier)
-    is ImageUi -> ConsumeImageUi(imageUi = this, modifier = modifier)
+    is TextUi -> ConsumeTextUi(textUi = this, modifier = modifier, version = version)
+    is ImageUi -> ConsumeImageUi(imageUi = this, modifier = modifier, version = version)
     is ListUi -> ConsumeList(
       listUi = this,
       modifier = modifier,
+      version = version,
       onListItemClicked = onListItemClicked
     )
 
-    else -> ConsumeDefaultUi(uiComponent = this)
+    else -> ConsumeDefaultUi(uiComponent = this, version = version)
   }
 }

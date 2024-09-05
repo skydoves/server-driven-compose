@@ -15,32 +15,10 @@
  */
 package io.getstream.server.driven.core.model
 
-import kotlinx.serialization.Serializable
+import androidx.compose.runtime.Immutable
 
-@Serializable
-data class TimelineUi(
+@Immutable
+data class ScreenUi(
   val version: Int,
-  val top: TimelineTopUi,
-  val center: TimelineCenterUi,
-  val bottom: TimelineBottomUi
-) : UiComponent
-
-@Serializable
-data class TimelineTopUi(
-  override val order: Int,
-  val banner: ImageUi
-) : OrderedUiComponent
-
-@Serializable
-data class TimelineCenterUi(
-  override val order: Int,
-  val title: TextUi,
-  val list: ListUi
-) : OrderedUiComponent
-
-@Serializable
-data class TimelineBottomUi(
-  override val order: Int,
-  val title: TextUi,
-  val list: ListUi
-) : OrderedUiComponent
+  val components: List<UiComponent>
+)
