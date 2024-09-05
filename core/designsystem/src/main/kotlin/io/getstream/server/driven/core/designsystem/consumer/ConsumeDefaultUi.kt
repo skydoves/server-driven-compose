@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.getstream.server.driven.core.designsystem.preview.MockUtils
 import io.getstream.server.driven.core.designsystem.theme.ServerDrivenTheme
+import io.getstream.server.driven.core.designsystem.version.UiVersion
 import io.getstream.server.driven.core.model.UiComponent
 
 @Composable
@@ -47,7 +48,7 @@ fun ConsumeDefaultUi(
 private fun ConsumeDefaultUiPreview() {
   ServerDrivenTheme {
     Box(modifier = Modifier.background(ServerDrivenTheme.colors.background)) {
-      ConsumeDefaultUi(MockUtils.mockTextUi1, version = 1)
+      ConsumeDefaultUi(MockUtils.mockTextUi1, version = UiVersion.VERSION_1_0.value)
     }
   }
 }

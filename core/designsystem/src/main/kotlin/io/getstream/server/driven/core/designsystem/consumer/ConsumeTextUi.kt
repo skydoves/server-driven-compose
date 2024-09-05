@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import io.getstream.server.driven.core.designsystem.preview.MockUtils
 import io.getstream.server.driven.core.designsystem.theme.ServerDrivenTheme
+import io.getstream.server.driven.core.designsystem.version.UiVersion
 import io.getstream.server.driven.core.model.TextUi
 
 @Composable
@@ -33,7 +34,7 @@ fun ConsumeTextUi(
   textUi: TextUi,
   modifier: Modifier = Modifier
 ) {
-  if (version == 1) {
+  if (version == UiVersion.VERSION_1_0.value) {
     Text(
       modifier = modifier,
       text = textUi.text,
@@ -62,11 +63,11 @@ private fun ConsumeTextUiV1Preview() {
         .fillMaxWidth()
     ) {
       ConsumeTextUi(
-        version = 1,
+        version = UiVersion.VERSION_1_0.value,
         textUi = MockUtils.mockTextUi1
       )
       ConsumeTextUi(
-        version = 1,
+        version = UiVersion.VERSION_1_0.value,
         textUi = MockUtils.mockTextUi2
       )
     }
@@ -83,11 +84,11 @@ private fun ConsumeTextUiV2Preview() {
         .fillMaxWidth()
     ) {
       ConsumeTextUi(
-        version = 2,
+        version = UiVersion.VERSION_2_0.value,
         textUi = MockUtils.mockTextUi1
       )
       ConsumeTextUi(
-        version = 2,
+        version = UiVersion.VERSION_2_0.value,
         textUi = MockUtils.mockTextUi2
       )
     }

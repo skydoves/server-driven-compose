@@ -44,6 +44,7 @@ import io.getstream.server.driven.core.designsystem.extension.widthDp
 import io.getstream.server.driven.core.designsystem.preview.DefaultPreview
 import io.getstream.server.driven.core.designsystem.preview.MockUtils
 import io.getstream.server.driven.core.designsystem.theme.ServerDrivenTheme
+import io.getstream.server.driven.core.designsystem.version.UiVersion
 import io.getstream.server.driven.core.model.LayoutType
 import io.getstream.server.driven.core.model.ListUi
 import io.getstream.server.driven.core.model.UiComponent
@@ -127,7 +128,7 @@ private fun ConsumeListPreview() {
     ConsumeList(
       listUi = MockUtils.mockListUi,
       onListItemClicked = {},
-      version = 1
+      version = UiVersion.VERSION_1_0.value
     )
   }
 }

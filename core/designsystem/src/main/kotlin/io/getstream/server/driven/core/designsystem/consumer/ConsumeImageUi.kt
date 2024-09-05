@@ -32,6 +32,7 @@ import io.getstream.server.driven.core.designsystem.R
 import io.getstream.server.driven.core.designsystem.extension.size
 import io.getstream.server.driven.core.designsystem.preview.MockUtils
 import io.getstream.server.driven.core.designsystem.theme.ServerDrivenTheme
+import io.getstream.server.driven.core.designsystem.version.UiVersion
 import io.getstream.server.driven.core.model.ImageUi
 import io.getstream.server.driven.core.model.UiComponent
 
@@ -43,7 +44,7 @@ fun ConsumeImageUi(
   navigator: (UiComponent) -> Unit = {},
   imageOptions: ImageOptions? = null
 ) {
-  val newModifier = if (version == 1) {
+  val newModifier = if (version == UiVersion.VERSION_1_0.value) {
     modifier
       .consumeHandler(
         handler = imageUi.handler,
@@ -91,7 +92,7 @@ fun ConsumeImageUi(
 @Composable
 private fun ConsumeImageUiV1Preview() {
   ServerDrivenTheme {
-    ConsumeImageUi(imageUi = MockUtils.mockImageUi, version = 1)
+    ConsumeImageUi(imageUi = MockUtils.mockImageUi, version = UiVersion.VERSION_1_0.value)
   }
 }
 
@@ -99,6 +100,6 @@ private fun ConsumeImageUiV1Preview() {
 @Composable
 private fun ConsumeImageUiV2Preview() {
   ServerDrivenTheme {
-    ConsumeImageUi(imageUi = MockUtils.mockImageUi, version = 2)
+    ConsumeImageUi(imageUi = MockUtils.mockImageUi, version = UiVersion.VERSION_2_0.value)
   }
 }
