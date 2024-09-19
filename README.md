@@ -22,6 +22,12 @@ The purpose of this repository is to demonstrate the following:
 - Establishing component design systems for consuming rendering protocols on the client side, along with versioning systems for these design components.
 - Gaining a deeper understanding of the Firebase Realtime Database system.
 
+## ✍️ Technical Content
+
+If you're interested in the overall design systems and the implementation details of this project, check out the blog post below:
+
+- [Design Server-Driven UI with Jetpack Compose and Firebase](https://getstream.io/blog/server-driven-compose-firebase/)
+
 ## Tech stack & Open-source libraries
 
 - Minimum SDK level 21.
